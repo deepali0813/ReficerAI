@@ -15,7 +15,7 @@ MOSS_PROJECT_ID = os.getenv("MOSS_PROJECT_ID")
 MOSS_PROJECT_KEY = os.getenv("MOSS_PROJECT_KEY")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
-INDEX_NAME = "manual-index"
+
 
 # ------------------------
 # GEMINI
@@ -30,10 +30,10 @@ model = genai.GenerativeModel("gemini-2.5-flash")
 # MOSS SEARCH
 # ------------------------
 client = None
-async def search_docs(query):
+async def search_docs(query,index_name):
 
     results = await client.query(
-        INDEX_NAME,
+        index_name,
         query,
         QueryOptions(top_k=3)
     )
@@ -46,7 +46,7 @@ async def search_docs(query):
 
     return context
 
-async def initialize_moss():
+async def initialize_moss(index_name):
 
     global client
 
@@ -57,18 +57,26 @@ async def initialize_moss():
 
     print("Loading index...")
 
-    await client.load_index(INDEX_NAME)
+    await client.load_index(index_name)
 
     print("Index loaded successfully!")
 # ------------------------
 # DIAGNOSTIC AGENT
 # ------------------------
-
+language = "English"
 async def diagnose(issue, history,  retrieved_docs):
 
   
 
     prompt = f"""
+Detected Language: {language}
+
+IMPORTANT:
+Respond ONLY in {language}.
+Do not switch languages.
+Do not mix languages.
+Translate headings into {language}.
+
 You are an experienced product technician.
 
 Current Issue:
@@ -81,8 +89,8 @@ Relevant Documentation:
 {retrieved_docs}
 
 MULTILINGUAL RULES:
-1. Automatically detect the user's language from the conversation history.
-2. Always respond in the SAME language as the user.
+1. Use the language of the user's MOST RECENT message.
+2. Never switch languages on your own.
 3. If the user switches language, continue in the new language.
 4. Support English, Hindi, Punjabi, Hinglish and other Indian languages.
 5. Keep technical terms untranslated when appropriate.
@@ -99,22 +107,38 @@ DIAGNOSTIC RULES:
    - Probable cause
    - Recommended action
    - Reference to documentation
+9. Before asking a new question, use the conversation history and retrieved documentation.
+   Do not ignore newly retrieved documentation.
+LANGUAGE FORMAT RULES:
 
-RESPONSE FORMAT:
+1. Detect the user's language.
+2. ALL output must be in the user's language.
+3. Translate section headings too.
+4. Never mix English headings with Hindi/Punjabi responses.
+5. Keep only technical product names untranslated if needed.
 
+Examples:
+
+English:
 Question:
-<question>
+Do the headlights work?
 
 Why I'm asking:
-<short reason>
+This helps determine whether the issue is battery related.
 
-OR
+Hindi:
+प्रश्न:
+क्या हेडलाइट काम कर रही है?
 
-Diagnosis:
-<diagnosis>
+मैं यह क्यों पूछ रहा हूँ:
+इससे पता चलेगा कि समस्या बैटरी से जुड़ी है या नहीं.
 
-Recommended Action:
-<solution>
+Punjabi:
+ਸਵਾਲ:
+ਕੀ ਹੈਡਲਾਈਟ ਕੰਮ ਕਰ ਰਹੀ ਹੈ?
+
+ਮੈਂ ਇਹ ਕਿਉਂ ਪੁੱਛ ਰਿਹਾ ਹਾਂ:
+ਇਸ ਨਾਲ ਪਤਾ ਲੱਗੇਗਾ ਕਿ ਸਮੱਸਿਆ ਬੈਟਰੀ ਨਾਲ ਸੰਬੰਧਿਤ ਹੈ ਜਾਂ ਨਹੀਂ.
 """
 
     try:
@@ -130,7 +154,7 @@ async def main():
     print("=== Product Diagnostic Assistant ===")
 
     current_issue = input("\nDescribe your problem: ")
-    retrieved_docs = await search_docs(current_issue)
+    
     conversation_history = [
         f"User: {current_issue}"
     ]
@@ -138,7 +162,14 @@ async def main():
     while True:
 
         history = "\n".join(conversation_history)
+        search_query = f"""
+        Issue: {current_issue}
 
+        Conversation:
+        {history}
+        """
+
+        retrieved_docs = await search_docs(search_query)
         answer = await diagnose(
             current_issue,
             history,
