@@ -21,10 +21,10 @@ export default function SignupPage() {
   const [fullName, setFullName] = useState("");
 
   const handleSignup = async () => {
-    if (password !== confirmPassword) {
-      alert("Passwords do not match!");
-      return;
-    }
+    if (!email || !password || (role === "user" && !fullName)) {
+  alert("Please fill in all required fields.");
+  return;
+}
 
     if (role === "company") {
       try {
@@ -55,9 +55,32 @@ export default function SignupPage() {
         alert("Something went wrong!");
       }
     } else {
-      // User signup will be implemented later
-      alert("User signup feature coming soon!");
+  try {
+    const response = await fetch("/api/user/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: fullName,
+        email,
+        password,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      alert("User registered successfully!");
+      router.push("/login?role=user");
+    } else {
+      alert(data.message);
     }
+  } catch (error) {
+    console.error(error);
+    alert("Something went wrong!");
+  }
+}
   };
 
   return (

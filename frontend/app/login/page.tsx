@@ -13,6 +13,10 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
 
   const handleLogin = async () => {
+    if (!email || !password) {
+  alert("Please enter both email and password.");
+  return;
+}
     if (role === "company") {
       try {
         const response = await fetch("/api/company/login", {
@@ -39,8 +43,35 @@ export default function LoginPage() {
         alert("Something went wrong.");
       }
     } else {
-      alert("User login will be implemented later.");
+  try {
+    const response = await fetch("/api/user/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      alert("Login successful!");
+
+      // Optional: store user info for the MVP
+      localStorage.setItem("user", JSON.stringify(data.user));
+
+      router.push("/user/dashboard");
+    } else {
+      alert(data.message);
     }
+  } catch (error) {
+    console.error(error);
+    alert("Something went wrong.");
+  }
+}
   };
 
   return (
