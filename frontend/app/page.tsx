@@ -13,8 +13,8 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-indigo-200">
-      <div className="bg-white rounded-2xl shadow-xl p-10 w-[420px]">
+    <main className="min-h-screen bg-hero flex items-center justify-center">
+      <div className="glass-bg rounded-3xl p-10 w-full max-w-md">
         <h1 className="text-4xl font-bold text-center text-indigo-700">
           ReficerAI
         </h1>

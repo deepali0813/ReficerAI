@@ -39,27 +39,28 @@ export default function ProductPage() {
 
     try {
       const response = await fetch("/api/chat", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          productId: id,
-          message: userMessage.content,
-        }),
-      });
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    productId: id,
+    message: userMessage.content,
+    history: chat,
+  }),
+});
 
-      const data = await response.json();
+const data = await response.json();
 
-      const aiMessage: ChatMessage = {
-        id: Date.now() + 1,
-        role: "assistant",
-        content:
-          data.response ||
-          "Sorry, I couldn't process your request right now.",
-      };
+const aiMessage: ChatMessage = {
+  id: Date.now() + 1,
+  role: "assistant",
+  content:
+    data.response ||
+    "Sorry, I couldn't process your request right now.",
+};
 
-      setChat((prev) => [...prev, aiMessage]);
+setChat((prev) => [...prev, aiMessage]);
     } catch (error) {
       console.error(error);
 
