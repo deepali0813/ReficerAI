@@ -243,6 +243,9 @@ User portal
 <img width="1600" height="752" alt="image" src="https://github.com/user-attachments/assets/a8b03ed1-82c5-4431-9a8c-0047bc03c88a" />
 <img width="1600" height="761" alt="image" src="https://github.com/user-attachments/assets/cb012999-0d1c-42cc-928d-8d07a0970f87" />
 
+# Presentation
+https://drive.google.com/file/d/1NAsxWDgCvyP3f8SBBxhLtRczvKGU8rDP/view?usp=sharing
+
 # Future Enhancements
 
 * Voice-based diagnostics
