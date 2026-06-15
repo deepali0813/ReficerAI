@@ -1,5 +1,5 @@
 "use client";
-
+import Image from "next/image";
 import { useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 
@@ -39,14 +39,52 @@ export default function LoginPage() {
         alert("Something went wrong.");
       }
     } else {
-      alert("User login will be implemented later.");
+  try {
+    const response = await fetch("/api/user/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      alert("Login successful!");
+
+      // Optional: store user info for the MVP
+      localStorage.setItem("user", JSON.stringify(data.user));
+
+      router.push("/user/dashboard");
+    } else {
+      alert(data.message);
     }
+  } catch (error) {
+    console.error(error);
+    alert("Something went wrong.");
+  }
+}
   };
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-8 rounded-xl shadow-lg w-[400px]">
-        <h1 className="text-3xl font-bold text-center text-indigo-700">
+    <main className="min-h-screen bg-hero flex items-center justify-center">
+      <div className="glass-bg rounded-3xl p-10 w-full max-w-md">
+          <div className="logo-placeholder">
+                      <Image
+              src="/reficerai_logo.png"
+              alt="ReficerAI Logo"
+              width={800}
+              height={800}
+              className="object-contain rounded-3x"
+            />
+                    </div>
+        <h1 className="text-3xl font-bold text-center text-black mt-10">
+            
+                      
           {role === "company" ? "Company Login" : "User Login"}
         </h1>
 
@@ -69,7 +107,7 @@ export default function LoginPage() {
 
           <button
             onClick={handleLogin}
-            className="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700"
+            className="w-full hover:bg-white text-white text-lg hover:text-black text-lg py-3 rounded-lg "
           >
             Login
           </button>

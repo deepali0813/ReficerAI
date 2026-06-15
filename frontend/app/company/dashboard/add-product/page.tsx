@@ -83,8 +83,8 @@ export default function AddProductPage() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-100 py-10">
-      <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-lg p-8">
+    <main className="min-h-screen bg-black py-10">
+      <div className="max-w-4xl mx-auto bg-black rounded-xl shadow-lg p-8">
         <h1 className="text-3xl font-bold text-indigo-700 mb-8">
           Add New Product
         </h1>

@@ -1,28 +1,53 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-const products = [
-  {
-    id: 1,
-    name: "Scooter X200",
-    category: "Electric Vehicle",
-  },
-  {
-    id: 2,
-    name: "Water Purifier Pro",
-    category: "Home Appliance",
-  },
-  {
-    id: 3,
-    name: "Smart AC 1.5T",
-    category: "Electronics",
-  },
-];
+interface Product {
+  _id: string;
+  productName: string;
+  category: string;
+}
 
 export default function UserDashboard() {
   const router = useRouter();
+  const [products, setProducts] = useState<Product[]>([]);
+const [loading, setLoading] = useState(true);
 
+useEffect(() => {
+  console.log("Products state updated:", products);
+}, [products]);
+
+useEffect(() => {
+  const fetchProducts = async () => {
+    try {
+      const response = await fetch("/api/products/get");
+      const data = await response.json();
+      console.log(data)
+      if (data.success) {
+        setProducts(data.products);
+      } else {
+        alert("Failed to load products.");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Something went wrong while fetching products.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchProducts();
+}, []);
+if (loading) {
+  return (
+    <main className="min-h-screen flex items-center justify-center">
+      <h1 className="text-2xl font-semibold text-indigo-700">
+        Loading products...
+      </h1>
+    </main>
+  );
+}
   return (
     <main className="min-h-screen bg-slate-100">
       {/* Navbar */}
@@ -40,12 +65,12 @@ export default function UserDashboard() {
           Welcome!
         </h2>
 
-        <p className="text-gray-500 mt-2 mb-8">
+        <p className="text-black mt-2 mb-8">
           Browse products and ask AI for help.
         </p>
 
         {/* Search Bar */}
-        <div className="mb-8">
+        <div className="mb-8 text-black">
           <input
             type="text"
             placeholder="🔍 Search products..."
@@ -57,20 +82,20 @@ export default function UserDashboard() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {products.map((product) => (
             <div
-              key={product.id}
+              key={product._id}
               className="bg-white rounded-xl shadow-md p-6"
             >
-              <h3 className="text-xl font-bold">
-                {product.name}
+              <h3 className="text-xl font-bold text-black">
+                {product.productName}
               </h3>
 
-              <p className="text-gray-500 mt-2">
+              <p className="text-black mt-2">
                 {product.category}
               </p>
 
               <button
                 onClick={() =>
-                  router.push(`/user/products/${product.id}`)
+                  router.push(`/user/products/${product._id}`)
                 }
                 className="mt-6 w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded-lg"
               >
