@@ -233,14 +233,15 @@ MOSS_PROJECT_KEY=your_project_key
 3. Start chatting with ReficerAI.
 4. Receive troubleshooting assistance based on official documentation.
 
----
-
-# Demo Video
-
-Demo Video Link:
-[Paste YouTube / Drive Link Here]
-
----
+# Screenshots
+Company portal 
+<img width="1600" height="763" alt="image" src="https://github.com/user-attachments/assets/39d119d0-49e3-45e6-a044-cff6f4c6fe48" />
+<img width="1600" height="756" alt="image" src="https://github.com/user-attachments/assets/a4841056-7caa-4960-ae97-054cf8ed5ad1" />
+<img width="1600" height="755" alt="image" src="https://github.com/user-attachments/assets/20bdc332-4106-46a5-812b-965d0b399b31" />
+User portal 
+<img width="1600" height="764" alt="image" src="https://github.com/user-attachments/assets/e56c86d8-6d49-4590-998e-333cc7dd08c6" />
+<img width="1600" height="752" alt="image" src="https://github.com/user-attachments/assets/a8b03ed1-82c5-4431-9a8c-0047bc03c88a" />
+<img width="1600" height="761" alt="image" src="https://github.com/user-attachments/assets/cb012999-0d1c-42cc-928d-8d07a0970f87" />
 
 # Future Enhancements
 
