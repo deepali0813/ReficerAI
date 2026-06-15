@@ -1,4 +1,4 @@
-#ReficerAI 🚀
+##ReficerAI 🚀
 
 ## Team Name
 
@@ -151,7 +151,7 @@ User Receives Answer
 
 ---
 
-### Core Innovations
+## Core Innovations
 
 * Ambient Retrieval for improved context understanding
 * Product-Specific Retrieval-Augmented Generation (RAG)
