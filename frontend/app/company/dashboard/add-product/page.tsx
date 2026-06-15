@@ -8,30 +8,56 @@ export default function AddProductPage() {
   const [description, setDescription] = useState("");
   const [instructions, setInstructions] = useState("");
   const [commonIssues, setCommonIssues] = useState("");
+  const [pdfFile, setPdfFile] =
+  useState<File | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const productData = {
-      productName,
-      category,
-      description,
-      handlingInstructions: instructions,
-      commonIssues,
-      // Temporary hardcoded value.
-      // Later we'll get this from login/session.
-      companyEmail: "xyz@example.com",
-    };
+    const formData = new FormData();
+
+    formData.append(
+      "productName",
+      productName
+    );
+    
+    formData.append(
+          "category",
+      category
+    );
+
+    formData.append(
+      "description",
+      description
+    );
+
+    formData.append(
+      "handlingInstructions",
+      instructions
+    );
+
+    formData.append(
+      "commonIssues",
+      commonIssues
+    );
+
+    formData.append(
+      "companyEmail",
+      "xyz@example.com"
+    );
+   if (pdfFile) {
+    formData.append(
+       "pdf",
+       pdfFile
+     );
+   }
 
     try {
       const response = await fetch(
         "/api/products/add",
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(productData),
+          body: formData
         }
       );
 
@@ -136,19 +162,20 @@ export default function AddProductPage() {
               required
             />
           </div>
-
+       
           {/* PDFs (UI only for now) */}
-          <div>
-            <label className="block font-medium mb-2">
-              Upload Manuals / PDFs / Documents
-            </label>
-            <input
-              type="file"
-              multiple
-              accept=".pdf,.doc,.docx,.txt"
-              className="w-full border rounded-lg p-3"
-            />
-          </div>
+          <input
+            type="file"
+            accept=".pdf"
+            className="w-full border rounded-lg p-3"
+            onChange={(e) => {
+             const file = e.target.files?.[0];
+
+             if (file) {
+                 setPdfFile(file);
+              } 
+            }}
+          /> 
 
           {/* Common Issues */}
           <div>
