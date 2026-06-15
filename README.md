@@ -235,13 +235,6 @@ MOSS_PROJECT_KEY=your_project_key
 
 ---
 
-# Demo Video
-
-Demo Video Link:
-[Paste YouTube / Drive Link Here]
-
----
-
 # Future Enhancements
 
 * Voice-based diagnostics
@@ -252,3 +245,15 @@ Demo Video Link:
 ### Impact
 
 ReficerAI reduces the effort required to search through product manuals while improving customer support efficiency and accessibility through AI-powered assistance.
+
+<img width="1600" height="757" alt="056a7be2-ab7f-463e-9421-d321482e2cfd" src="https://github.com/user-attachments/assets/b432fba7-f9a9-48c5-ab6d-a9393de497d8" />
+<img width="1600" height="763" alt="a3925a0f-4b20-498b-af27-53c913828bdd" src="https://github.com/user-attachments/assets/7355977a-5f40-4160-ad91-845b55048f26" />
+<img width="1600" height="764" alt="b97dfe64-4a2f-431d-a26a-9b1a71d6d17f" src="https://github.com/user-attachments/assets/069948ef-9211-4f1c-896f-b264170c6b07" />
+<img width="1600" height="755" alt="ba38d111-b053-4513-995e-fff39e677ae1" src="https://github.com/user-attachments/assets/1a02d7ba-80a7-494d-8903-68608e90a6e5" />
+<img width="1600" height="756" alt="af1bcb68-643a-4ff7-b036-32d25e1b7cab" src="https://github.com/user-attachments/assets/03afe5b8-61b1-4942-9531-a0351cc6a53f" />
+<img width="1918" height="902" alt="image" src="https://github.com/user-attachments/assets/22446af5-2eb3-4306-be52-c45097b095fb" />
+<img width="1918" height="913" alt="image" src="https://github.com/user-attachments/assets/7843588a-aa73-419c-b4c5-4509cc88e82d" />
+
+
+
+
