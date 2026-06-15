@@ -24,3 +24,193 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+/* ============================================================
+   ReficerAI - Landing Page Styles
+   Glassmorphism over a full-bleed background image
+   ============================================================ */
+
+/* ---------------------------------------------------------
+   1. Background image
+   Replace the url() below with your uploaded image path,
+   e.g. put it in /public and reference as "/your-bg.jpg"
+   --------------------------------------------------------- */
+.bg-hero {
+  position: relative;
+  min-height: 100vh;
+
+  /* TODO: replace with your background image */
+  background-image:
+    linear-gradient(135deg, rgba(67, 56, 202, 0.35), rgba(15, 23, 42, 0.55)),
+    url("/bg.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* fixed background-attachment can be janky on mobile, so scroll it there */
+@media (max-width: 768px) {
+  .bg-hero {
+    background-attachment: scroll;
+  }
+}
+
+/* ---------------------------------------------------------
+   2. Frosted glass card (wraps logo + form content)
+   --------------------------------------------------------- */
+.glass-bg {
+  position: relative;
+  z-index: 1;
+
+  background: rgba(0, 0, 0, 0.84);
+  backdrop-filter: blur(100px) saturate(140%);
+  -webkit-backdrop-filter: blur(100px) saturate(140%);
+
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow:
+    0 8px 32px rgba(31, 38, 135, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+
+  animation: fadeInUp 0.5s ease-out;
+}
+
+/* ---------------------------------------------------------
+   3. Logo placeholder
+   Add a div with class="logo-placeholder" above the <h1>
+   e.g. <div className="logo-placeholder">LOGO</div>
+   --------------------------------------------------------- */
+.logo-placeholder {
+  width: 350px;
+  height: 200px;
+  margin: 0 auto 1.25rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px dashed rgba(255, 255, 255, 0.55);
+
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(67, 56, 202, 0.7);
+}
+
+/* ---------------------------------------------------------
+   4. Frosted input fields (for login / signup forms)
+   Apply class="glass-input" to <input> elements
+   --------------------------------------------------------- */
+.glass-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+
+  color: #312e81;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.glass-input::placeholder {
+  color: rgba(49, 46, 129, 0.5);
+}
+
+.glass-input:focus {
+  background: rgba(255, 255, 255, 0.28);
+  border-color: rgba(99, 102, 241, 0.55);
+}
+
+/* ---------------------------------------------------------
+   5. Small motion polish
+   --------------------------------------------------------- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glass-bg {
+    animation: none;
+  }
+}
+/* ============================================================
+   ReficerAI - Home Page Styles
+   ============================================================ */
+
+/* ---------------------------------------------------------
+   Background image
+   Replace the url() below with your uploaded image path,
+   e.g. put it in /public and reference as "/your-bg.jpg"
+   --------------------------------------------------------- */
+.bg-hero {
+  position: relative;
+  min-height: 100vh;
+
+  background-image:
+    linear-gradient(135deg, rgba(67, 56, 202, 0.35), rgba(15, 23, 42, 0.55)),
+    url("/bg.jpg"); /* TODO: replace with your image */
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+@media (max-width: 768px) {
+  .bg-hero {
+    background-attachment: scroll;
+  }
+}
+
+/* ---------------------------------------------------------
+   Frosted glass card
+   --------------------------------------------------------- */
+.glass-bg {
+  position: relative;
+  z-index: 1;
+
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow:
+    0 8px 32px rgba(31, 38, 135, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+
+  animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glass-bg {
+    animation: none;
+  }
+}

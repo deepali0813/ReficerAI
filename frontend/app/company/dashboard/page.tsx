@@ -46,7 +46,7 @@ export default function CompanyDashboard() {
             <h2 className="text-3xl font-bold text-indigo-700">
               Welcome, Company!
             </h2>
-            <p className="text-gray-500">
+            <p className="text-black">
               Manage your products and AI knowledge base.
             </p>
           </div>
@@ -61,7 +61,7 @@ export default function CompanyDashboard() {
           </button>
         </div>
 
-        <h3 className="text-2xl font-semibold mb-4">Your Products</h3>
+        <h3 className="text-2xl font-semibold mb-4 text-black">Your Products</h3>
 
         <div className="space-y-4">
   {loading ? (
@@ -69,7 +69,7 @@ export default function CompanyDashboard() {
       Loading products...
     </div>
   ) : products.length === 0 ? (
-    <div className="bg-white rounded-xl shadow-md p-5 text-center text-gray-500">
+    <div className="bg-white rounded-xl shadow-md p-5 text-center text-black">
       No products added yet.
     </div>
   ) : (
@@ -79,10 +79,10 @@ export default function CompanyDashboard() {
         className="bg-white rounded-xl shadow-md p-5 flex justify-between items-center"
       >
         <div>
-          <h4 className="text-xl font-semibold">
+          <h4 className="text-xl font-semibold text-black">
             {product.productName}
           </h4>
-          <p className="text-gray-500">
+          <p className="text-black">
             {product.category}
           </p>
         </div>

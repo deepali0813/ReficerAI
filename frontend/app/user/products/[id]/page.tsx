@@ -196,7 +196,7 @@ setChat((prev) => [...prev, aiMessage]);
               ))}
 
               {isLoading && (
-                <p className="text-sm text-gray-500 italic">
+                <p className="text-sm text-black italic">
                   ReficerAI is thinking...
                 </p>
               )}
@@ -213,7 +213,7 @@ setChat((prev) => [...prev, aiMessage]);
                     sendMessage();
                   }
                 }}
-                className="flex-1 border rounded-lg p-3 outline-none focus:ring-2 focus:ring-indigo-400"
+                className="flex-1 border rounded-lg p-3 outline-none focus:ring-2 focus:ring-indigo-400 text-black"
               />
 
               <button

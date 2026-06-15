@@ -65,12 +65,12 @@ if (loading) {
           Welcome!
         </h2>
 
-        <p className="text-gray-500 mt-2 mb-8">
+        <p className="text-black mt-2 mb-8">
           Browse products and ask AI for help.
         </p>
 
         {/* Search Bar */}
-        <div className="mb-8">
+        <div className="mb-8 text-black">
           <input
             type="text"
             placeholder="🔍 Search products..."
@@ -85,11 +85,11 @@ if (loading) {
               key={product._id}
               className="bg-white rounded-xl shadow-md p-6"
             >
-              <h3 className="text-xl font-bold">
+              <h3 className="text-xl font-bold text-black">
                 {product.productName}
               </h3>
 
-              <p className="text-gray-500 mt-2">
+              <p className="text-black mt-2">
                 {product.category}
               </p>
 

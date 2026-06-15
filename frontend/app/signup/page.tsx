@@ -21,10 +21,10 @@ export default function SignupPage() {
   const [fullName, setFullName] = useState("");
 
   const handleSignup = async () => {
-    if (!email || !password || (role === "user" && !fullName)) {
-  alert("Please fill in all required fields.");
-  return;
-}
+    if (password !== confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
 
     if (role === "company") {
       try {
